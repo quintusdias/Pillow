@@ -1,5 +1,6 @@
 from __future__ import division
 
+from contextlib import closing
 import io
 import struct
 
@@ -12,6 +13,14 @@ tag_ids = {info.name: info.value for info in TiffTags.TAGS_V2.values()}
 
 
 class TestFileTiffMetadata(PillowTestCase):
+
+    def test_photoshop_info(self):
+        """
+        """
+        img = Image.open('Tests/images/issue2278.tif')
+        with closing(io.BytesIO()) as f:
+            import pdb; pdb.set_trace()
+            img.save(f, img.format)
 
     def test_rt_metadata(self):
         """ Test writing arbitrary metadata into the tiff image directory
